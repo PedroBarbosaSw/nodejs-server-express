@@ -28,8 +28,17 @@ class ContactController {
       // Editar um registro
    }
 
-   delete() {
-      // Deletar um registro
+   delete(request, response) {
+      const { id } = request.params;
+
+      const contact = await ContactsRepository.findById(id);
+
+      if(!contacts) {
+         return response.status(404).json({ error: 'User not found' });
+      }
+
+      await ContactsRepository.delete(id);
+      response.sendStatus(204);
    }
 }
 
