@@ -20,6 +20,13 @@ class ContactsRepository {
          contacts.find((contact) => contact.id === id),
       ));
    }
+
+   delete(id) {
+      return new Promise((resolve) => {
+         contacts = contacts.filter((contact) => contact.id !== id);
+         resolve();
+      })
+   }
 }
 
 module.exports = new ContactsRepository();
